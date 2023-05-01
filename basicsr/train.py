@@ -38,6 +38,8 @@ def parse_options(is_train=True):
 
     parser.add_argument('--input_path', type=str, required=False, help='The path to the input image. For single image inference only.')
     parser.add_argument('--output_path', type=str, required=False, help='The path to the output image. For single image inference only.')
+    parser.add_argument('--batch_size', type=int, default=8)
+    parser.add_argument('--num_workers', type=int, default=8)
 
     args = parser.parse_args()
     opt = parse(args.opt, is_train=is_train)
@@ -68,6 +70,8 @@ def parse_options(is_train=True):
             'input_img': args.input_path,
             'output_img': args.output_path
         }
+        opt['batch_size'] = args.batch_size
+        opt['num_workers'] = args.num_workers
 
     return opt
 
